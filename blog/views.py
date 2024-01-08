@@ -7,6 +7,7 @@ from django.utils import timezone
 
 # Create your views here.
 def blog_view(request, cat_name=None, author_username=None):
+    #  Chapter 6 - Part 1 Excersice
     current_datetime = timezone.now()
     posts = Post.objects.filter(status=1, published_date__lte=current_datetime).order_by('-published_date')
 
