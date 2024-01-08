@@ -1,32 +1,14 @@
-import datetime
-
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
-
-def check_change_status(posts: Post):
-    '''
-        set the status of to 1.
-    :param posts: The posts whose time has come to publish, but their status is zero
-    :return: the posts that pub_date is lte than datetime.now()
-    '''
-    for p in posts:
-        if p.status == 0:
-            p.status = 1
-            p.save()
-    return None
+from django.utils import timezone
 
 
 # Create your views here.
 def blog_view(request, cat_name=None, author_username=None):
-    current_datetime = datetime.datetime.now()
-    posts = Post.objects.filter(published_date__lte=current_datetime)
-    # ************change status to 1 if pub_date<= now() **********************
-    check_change_status(posts)
-
-    posts = Post.objects.filter(status=1)
+    current_datetime = timezone.now()
+    posts = Post.objects.filter(status=1, published_date__lte=current_datetime).order_by('-published_date')
 
     if cat_name:
         posts = posts.filter(category__name=cat_name)
@@ -36,8 +18,6 @@ def blog_view(request, cat_name=None, author_username=None):
         posts = Paginator(posts, 3)
         page_number = request.GET.get("page")
         posts = posts.get_page(page_number)
-
-
     except PageNotAnInteger:
         posts = posts.get_page(1)
     except EmptyPage:
@@ -51,9 +31,24 @@ def blog_view(request, cat_name=None, author_username=None):
 def blog_single(request, pid):
     try:
         post = get_object_or_404(Post, id=pid, status=1)
+        #  Chapter 6 - Part 1 Excersice
         post.counted_views += 1
         post.save()
-        context = {'post': post}
+
+        #  Chapter 6 - Part 2 Excersice
+        lst_post = list(Post.objects.filter(status=1).order_by('-published_date'))
+        post_index = lst_post.index(post)
+        if post_index > 0:
+            prev_post = lst_post[post_index - 1]
+        else:
+            prev_post = None
+
+        if post_index == len(lst_post) - 1:
+            next_post = None
+        else:
+            next_post = lst_post[post_index + 1]
+
+        context = {'post': post, 'prev_post': prev_post, 'next_post': next_post}
         return render(request, 'blog/blog-single.html', context)
     except Post.DoesNotExist:
         raise Http404("No MyModel matches the given query.")
@@ -61,7 +56,6 @@ def blog_single(request, pid):
 
 def blog_category(request, cat_name):
     posts = Post.objects.filter(category__name=cat_name)
-    # posts = posts.filter(category__name=cat_name)
 
     context = {'posts': posts}
     return render(request, 'blog/blog-home.html', context)
