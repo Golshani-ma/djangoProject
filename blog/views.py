@@ -38,7 +38,7 @@ def blog_single(request, pid):
         post.counted_views += 1
         post.save()
 
-        #  Chapter 6 - Part 2 Excersice
+        #  Chapter 6-Part 2 Excersice
         lst_post = list(Post.objects.filter(status=1, published_date__lte=current_datetime).order_by('-published_date'))
         post_index = lst_post.index(post)
         if post_index > 0:
