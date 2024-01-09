@@ -39,7 +39,7 @@ def blog_single(request, pid):
         post.save()
 
         #  Chapter 6 - Part 2 Excersice
-        lst_post = list(Post.objects.filter(status=1).order_by('-published_date'))
+        lst_post = list(Post.objects.filter(status=1, published_date__lte=current_datetime).order_by('-published_date'))
         post_index = lst_post.index(post)
         if post_index > 0:
             prev_post = lst_post[post_index - 1]
