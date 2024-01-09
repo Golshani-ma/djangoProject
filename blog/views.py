@@ -31,8 +31,10 @@ def blog_view(request, cat_name=None, author_username=None):
 # Create your views here.
 def blog_single(request, pid):
     try:
-        post = get_object_or_404(Post, id=pid, status=1)
+        current_datetime = timezone.now()
         #  Chapter 6 - Part 1 Excersice
+        post = get_object_or_404(Post, id=pid, status=1, published_date__lte=current_datetime)
+
         post.counted_views += 1
         post.save()
 
