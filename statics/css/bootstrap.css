@@ -516,6 +516,14 @@ mark,
 
   height: auto;
 }
+.img-fluid-bottom {
+  /*height: 150px;*/
+  /*width: 200px;*/
+  max-width: 200px;
+  max-height: 150px;
+
+
+}
 
 .img-thumbnail {
   padding: 0.25rem;
