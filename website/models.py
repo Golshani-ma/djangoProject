@@ -14,4 +14,4 @@ class Contact(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        db_table_comment = "Contact Table Commentssssssssss"
+        db_table_comment = "Contact Table"

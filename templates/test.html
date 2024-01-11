@@ -7,8 +7,24 @@
 </head>
 <body>
 
-{% post_titles as pt %}
-{% popular_posts %}
+<form method="post" action={% url 'blog:test' %}>
+    {% csrf_token %}
+    <label >name</label>
+    <input type="text" name="name">
+    <br>
+    <label >email</label>
+    <input type="email" name="email">
+    <br>
+    <label >subject</label>
+    <input type="text" name="subject">
+    <br>
+    <label >message</label>
+    <input type="text" name="message">
+    <br>
+
+
+    <button type="submit">submit</button>
+</form>
 <hr>
 
 
