@@ -6,27 +6,14 @@
     <title>Title</title>
 </head>
 <body>
-
-<form method="post" action={% url 'blog:test' %}>
+test in websiteapp
+<form method="post" action={% url 'website:test' %}>
     {% csrf_token %}
-    <label >name</label>
-    <input type="text" name="name">
-    <br>
-    <label >email</label>
-    <input type="email" name="email">
-    <br>
-    <label >subject</label>
-    <input type="text" name="subject">
-    <br>
-    <label >message</label>
-    <input type="text" name="message">
-    <br>
-
+    {{ form.as_p}}
 
     <button type="submit">submit</button>
 </form>
 <hr>
-
 
 </body>
 </html>
