@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,19 +41,70 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'robots',
     'taggit',
+    'debug_toolbar',
+    'django_summernote',
+    'captcha',
 
 
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
-
 ]
 # SiteMap configuration
 SITE_ID = 2
 
-
 # Robots.txt configuration
 ROBOTS_USE_SITEMAP = False
 ROBOTS_USE_HOST = False
+# Capcha Admin Configs
+
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
+}
+
+# SummerNote config
+SUMMERNOTE_THEME = 'bs4'
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode, default
+    'iframe': True,
+
+    # You can put custom Summernote settings
+    'summernote': {
+        # As an example, using Summernote Air-mode
+        'airMode': False,
+
+        # Change editor size
+        # 'width': '100%',
+        # 'height': '480',
+
+        # Toolbar customization
+        # https://summernote.org/deep-dive/#custom-toolbar-popover
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+
+    }
+}
+# # Or, explicitly set language/locale for editor
+#     'lang': 'ko-KR',
+#
+#     # You can also add custom settings for external plugins
+#     'print': {
+#         'stylesheetUrl': '/some_static_folder/printable.css',
+#     },
+#     'codemirror': {
+#         'mode': 'htmlmixed',
+#         'lineNumbers': 'true',
+#         # You have to include theme file in 'css' or 'css_for_inplace' before using it.
+#         'theme': 'monokai',
+#     },
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,7 +114,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware'
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+# Debug Toolbar
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
 ]
 
 ROOT_URLCONF = 'djangoProject.urls'
