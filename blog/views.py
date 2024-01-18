@@ -68,7 +68,6 @@ def blog_category(request, cat_name):
 
 def blog_search(request):
     posts = Post.objects.filter(status=1)
-
     if request.method == 'GET':
         if s := request.GET.get('s'):
             print()
