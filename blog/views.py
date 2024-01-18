@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
-from blog.models import Post
+from blog.models import Post, Comment
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils import timezone
 
@@ -52,8 +52,8 @@ def blog_single(request, pid):
             next_post = None
         else:
             next_post = lst_post[post_index + 1]
-
-        context = {'post': post, 'prev_post': prev_post, 'next_post': next_post}
+        comments = Comment.objects.filter(post=post.id).order_by('-create_date')
+        context = {'post': post, 'prev_post': prev_post, 'next_post': next_post, 'comments': comments}
         return render(request, 'blog/blog-single.html', context)
     except Post.DoesNotExist:
         raise Http404("No MyModel matches the given query.")
