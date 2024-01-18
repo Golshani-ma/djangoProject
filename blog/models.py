@@ -48,5 +48,5 @@ class Comment(models.Model):
     def __str__(self):
         return self.name
 
-
-    # class Meta:
+    class Meta:
+        ordering = ["-create_date"]

@@ -52,7 +52,7 @@ def blog_single(request, pid):
             next_post = None
         else:
             next_post = lst_post[post_index + 1]
-        comments = Comment.objects.filter(post=post.id).order_by('-create_date')
+        comments = Comment.objects.filter(post=post.id,approved=True).order_by('-create_date')
         context = {'post': post, 'prev_post': prev_post, 'next_post': next_post, 'comments': comments}
         return render(request, 'blog/blog-single.html', context)
     except Post.DoesNotExist:
