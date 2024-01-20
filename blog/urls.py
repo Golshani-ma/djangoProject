@@ -17,8 +17,8 @@ Including another URLconf
 
 from django.urls import path
 
+from blog.feed import LatestEntriesFeed
 from blog.views import *
-
 
 app_name = 'blog'
 urlpatterns = [
@@ -28,7 +28,7 @@ urlpatterns = [
     path('category/<str:cat_name>', blog_view, name='category'),
     path('author/<str:author_username>', blog_view, name='author'),
     path('search/', blog_search, name='search'),
+    path("rss/feed/", LatestEntriesFeed()),
     # path('test', test, name='test'),
-
 
 ]

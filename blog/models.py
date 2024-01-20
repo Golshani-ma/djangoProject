@@ -32,7 +32,7 @@ class Post(models.Model):
         ordering = ["-created_date"]
 
     def get_absolute_url(self):
-        pass  # return reverse('blog:single',kwargs={'pid':self.id})
+        return reverse('blog:single',kwargs={'pid':self.id})
 
 
 class Comment(models.Model):
