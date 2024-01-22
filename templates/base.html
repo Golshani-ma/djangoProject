@@ -37,9 +37,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-sm-6 col-6 header-top-left">
-                    <ul>
-                        <li><a href="#">Visit Us</a></li>
-                        <li><a href="#">Buy Tickets</a></li>
+                    <ul>{% if request.user.is_authenticated %}
+                        <li><a href="#">login as {{ request.user.username }}</a></li>
+                    {% else %}
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">sign Up</a></li>
+                    {% endif %}
                     </ul>
                 </div>
                 <div class="col-lg-6 col-sm-6 col-6 header-top-right">
@@ -63,10 +66,10 @@
                     <li><a href="{% url 'website:index' %}">Home</a></li>
                     <li><a href="{% url 'website:about' %}">About</a></li>
                     <li class="menu-has-children"><a href="{% url 'blog:index' %}">Blog</a>
-{#                        <ul>#}
-{#                            <li><a href="{%url 'blog:index' %}">Blog Home</a></li>#}
-{#                            <li><a href="{%url 'blog:single' %}">Blog Single</a></li>#}
-{#                        </ul>#}
+                        {#                        <ul>#}
+                        {#                            <li><a href="{%url 'blog:index' %}">Blog Home</a></li>#}
+                        {#                            <li><a href="{%url 'blog:single' %}">Blog Single</a></li>#}
+                        {#                        </ul>#}
                     </li>
                     <li class="menu-has-children"><a href="">Pages</a>
                         <ul>
@@ -136,10 +139,10 @@
                     <p>
                         For business professionals caught between high OEM price and mediocre print and graphic output.
                     </p>
-                    <div >
+                    <div>
                         <form
-                              action="{% url 'website:newsletter' %}"
-                              method="post" class="subscription relative">
+                                action="{% url 'website:newsletter' %}"
+                                method="post" class="subscription relative">
                             {% csrf_token %}
                             <div class="input-group d-flex flex-row">
                                 <input name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
