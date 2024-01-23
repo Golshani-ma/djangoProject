@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from blog.models import Post, Comment
@@ -8,6 +9,7 @@ from blog.forms import CommentForm
 
 
 # Create your views here.
+# @login_required(login_url='../accounts/login')
 def blog_view(request, **kwargs):
     #  Chapter 6 - Part 1 Excersice
     current_datetime = timezone.now()

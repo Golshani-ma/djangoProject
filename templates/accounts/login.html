@@ -59,16 +59,16 @@
             <div class="form">
                 <form method="post" action="{% url 'accounts:login' %}">
                     {% csrf_token %}
-{#                    <div class="inputBox">#}
-{#                        <input name='username' type="text" required> <i>Username</i>#}
-{#                    </div>#}
-{##}
-{#                    <br>#}
-{##}
-{#                    <div class="inputBox">#}
-{#                        <input name='password' type="password" required> <i>Password</i>#}
-{#                    </div>#}
-                    {{ form.as_p }}
+                    <div class="inputBox">
+                        <input name='username' type="text" required> <i>Username</i>
+                    </div>
+
+                    <br>
+
+                    <div class="inputBox">
+                        <input name='password' type="password" required> <i>Password</i>
+                    </div>
+{#                    {{ form.as_p }}#}
                     <div class="links"><a href="#">Forgot Password</a> <a href="#">Signup</a>
 
                     </div>
