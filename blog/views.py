@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+
 from blog.models import Post, Comment
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils import timezone
@@ -37,15 +39,15 @@ def blog_view(request, **kwargs):
 # Create your views here.
 def blog_single(request, pid):
     if request.method == 'POST':
+
         form = CommentForm(request.POST)
         # form.instance.post_id = pid
         print(form.instance.post_id)
         if form.is_valid():
             form.save()
-            messages.success(request,'کامنت  شما با موفقیت ثبت شد.')
+            messages.success(request, 'کامنت  شما با موفقیت ثبت شد.')
         else:
             messages.error(request, 'متاسفانه کامنت شما ثبت نشد.')
-
 
     try:
         current_datetime = timezone.now()
@@ -55,23 +57,34 @@ def blog_single(request, pid):
             post.counted_views += 1
             post.save()
 
-         #  Chapter 6-Part 2 Excersice
+        #  Chapter 6-Part 2 Excersice
         lst_post = list(
             Post.objects.filter(status=1, published_date__lte=current_datetime).order_by('-published_date'))
         post_index = lst_post.index(post)
         if post_index > 0:
             prev_post = lst_post[post_index - 1]
         else:
-             prev_post = None
+            prev_post = None
 
         if post_index == len(lst_post) - 1:
             next_post = None
         else:
             next_post = lst_post[post_index + 1]
-        comments = Comment.objects.filter(post=post.id, approved=True).order_by('-create_date')
-        form = CommentForm()
-        context = {'post': post, 'prev_post': prev_post, 'next_post': next_post, 'comments': comments, 'form': form}
-        return render(request, 'blog/blog-single.html', context)
+        if post.login_required:
+            if request.user.is_authenticated:
+                comments = Comment.objects.filter(post=post.id, approved=True).order_by('-create_date')
+                form = CommentForm()
+                context = {'post': post, 'prev_post': prev_post, 'next_post': next_post, 'comments': comments,
+                           'form': form}
+                return render(request, 'blog/blog-single.html', context)
+            else:
+                return HttpResponseRedirect(reverse('accounts:login'))
+        else:
+            comments = Comment.objects.filter(post=post.id, approved=True).order_by('-create_date')
+            form = CommentForm()
+            context = {'post': post, 'prev_post': prev_post, 'next_post': next_post, 'comments': comments,
+                       'form': form}
+            return render(request, 'blog/blog-single.html', context)
     except Post.DoesNotExist:
         raise Http404("No MyModel matches the given query.")
 

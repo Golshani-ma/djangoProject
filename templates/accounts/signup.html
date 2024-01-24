@@ -1,10 +1,94 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 </head>
-<body>
-<h1>signUp Page</h1>
+
+<body> <!-- partial:index.partial.html -->
+
+<section>
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>#}
+    {#    <span></span> <span></span> <span></span> <span></span>#}
+
+    <div class="signin">
+
+        <div class="content">
+
+            <h2>Sign Up</h2>
+
+            <div class="form">
+                <form method="post" action="{% url 'accounts:signup' %}">
+                    {% csrf_token %}
+                    <div class="inputBox">
+                        <input name='username' type="text" required> <i>Username</i>
+                    </div>
+                    <br>
+                    <div class="inputBox">
+                        <input name='password1' type="password" required> <i>Password</i>
+                        <input name='password2' type="password" required> <i>Confirm Password</i>
+                    </div>
+
+
+
+{#                                        {{ form.as_p }}#}
+
+
+                    {#                    </div>#}
+                    <br>
+                    <div class="inputBox">
+
+                        <input type="submit" value="SignUp">
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section> <!-- partial -->
+
 </body>
+
 </html>
