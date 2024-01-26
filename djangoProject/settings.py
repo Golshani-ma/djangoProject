@@ -51,6 +51,10 @@ INSTALLED_APPS = [
 ]
 # SiteMap configurations
 SITE_ID = 2
+AUTHENTICATION_BACKENDS = [
+    'accounts.EmailUsernameBackend.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Robots.txt configuration
 ROBOTS_USE_SITEMAP = False
