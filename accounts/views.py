@@ -34,6 +34,7 @@ def logout_view(request):
 
 
 def signup_view(request):
+    # test comments
     if not request.user.is_authenticated:
         if request.method == 'POST':
             form = UserCreationForm(request.POST)
