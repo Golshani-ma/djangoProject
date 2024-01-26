@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
 ]
-# SiteMap configuration
+# SiteMap configurations
 SITE_ID = 2
 
 # Robots.txt configuration
