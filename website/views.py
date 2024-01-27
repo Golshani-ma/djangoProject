@@ -19,8 +19,6 @@ def contact_view(request):
             form.instance.name = 'ناشناس '
             form.save()
             messages.success(request,'اطلاعات شما با موفقیت ثبت شد.')
-
-
         else:
             messages.error(request, 'متاسفانه خطایی پیش آمده. مجددا امتحان کنید.')
 
