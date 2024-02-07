@@ -46,9 +46,21 @@ INSTALLED_APPS = [
     'captcha',
 
 
+
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig',
+    'accounts',
 ]
+# Forgot Password Configs
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'parsaii021@gmail.com'
+EMAIL_HOST_PASSWORD = 'pbpzvrdjtlmrzvhm'
 # SiteMap configurations
 SITE_ID = 2
 AUTHENTICATION_BACKENDS = [
