@@ -59,8 +59,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # EMAIL_PORT = 465
 # EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'parsaii021@gmail.com'
-EMAIL_HOST_PASSWORD = 'pbpzvrdjtlmrzvhm'
+EMAIL_HOST_USER = 'YourGmailAccount@gmail.com'
+EMAIL_HOST_PASSWORD = 'App Password Genarated By Gmail, 2 Verification Step should Be Activited '
 # SiteMap configurations
 SITE_ID = 2
 AUTHENTICATION_BACKENDS = [
