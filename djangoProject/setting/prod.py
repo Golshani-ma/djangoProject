@@ -19,9 +19,14 @@ DATABASES = {
 }
 
 
-STATIC_ROOT = BASE_DIR / 'static'
-MEDIA_ROOT = BASE_DIR / 'media'
+# STATIC_ROOT = BASE_DIR / 'static'
+# MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = '/home/golshani/public_html/static'
+MEDIA_ROOT = '/home/golshani/public_html/media'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "statics"
+]
 CSRF_COOKIE_SECURE=True
 # STATICFILES_DIRS = [
 #     BASE_DIR / "statics"
