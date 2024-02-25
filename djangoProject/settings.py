@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_summernote',
     'captcha',
+    'compressor',
 
 
 
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'accounts',
 ]
+
 # Forgot Password Configs
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
@@ -218,6 +220,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 # *****************ADDED BY MAG ***********************
 # MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
