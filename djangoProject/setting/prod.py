@@ -2,6 +2,7 @@ from django.conf.global_settings import CSRF_COOKIE_SECURE
 
 from djangoProject.settings import *
 
+COMPRESS_OFFLINE = True
 SECRET_KEY = 'django-insecure-7lv*%$+)wvbaft82e2b&o@i3j@z$(@wrv7@$9t5kg&=3fw!5kd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -24,20 +25,23 @@ DATABASES = {
         'NAME': 'golshani_travel',
         'USER': 'golshani_amin',
         'PASSWORD': '9VBl%CB&RfYw',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
-# STATIC_ROOT = BASE_DIR / 'static'
-# MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = '/home/golshani/public_html/static'
-MEDIA_ROOT = '/home/golshani/public_html/media'
+STATIC_ROOT = BASE_DIR / 'static'
+MEDIA_ROOT = BASE_DIR / 'media'
+# STATIC_ROOT = '/home/golshani/public_html/static'
+# MEDIA_ROOT = '/home/golshani/public_html/media'
+
 
 STATICFILES_DIRS = [
     BASE_DIR / "statics"
 ]
 
+# COMPRESS_ROOT = STATIC_ROOT
+# COMPRESS_URL = STATIC_URL
 
 COMPRESS_ENABLED = True
 COMPRESS_CSS_FILTERS = [
@@ -54,11 +58,10 @@ STATICFILES_FINDERS = [
     'compressor.finders.CompressorFinder',
 ]
 
-
-CSRF_COOKIE_SECURE=True
+CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
-#X-Content-Type-Options
+# X-Content-Type-Options
 SECURE_CONTENT_TYPE_NOSNIFF = True
 ## Strict-Transport-Security
 SECURE_HSTS_SECONDS = 15768000
